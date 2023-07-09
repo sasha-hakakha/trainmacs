@@ -8,12 +8,6 @@ identity x = x
 interpretAction :: String -> (GameState -> GameState)
 interpretAction x = identity
 
-incrementAction :: GameState -> GameState
-incrementAction gs = gs { GameState.id = GameState.id gs + 1 }
-
-decrementAction :: GameState -> GameState
-decrementAction gs = gs { GameState.id = GameState.id gs - 1 }
-
 applyAction :: (GameState -> GameState) -> GameState -> (GameState, String)
 applyAction action gameState =
   let updatedState = action gameState
