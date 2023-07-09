@@ -1,31 +1,3 @@
--- module Main where
-
--- import GameState
-
--- processAction :: GameState -> String -> (GameState, String)
--- processAction gameState str = (gameState', "heard")
---   where
---     gameState' = updateGameState gameState
---     updateGameState :: GameState -> GameState
---     updateGameState gs = gs { GameState.id = GameState.id gs + 1 }
-
--- applyAction :: (GameState, String) -> (GameState, String)
--- applyAction GameState action =
---   let (message, updatedState) = processAction GameState action
---   in (updatedState { GameState.id = GameState.id updatedState + 1 }, message)
-
--- main :: IO ()
--- main = do
---   let initialState = GameState { GameState.id = 0, cursor = "^/" }
---   loop initialState
-
--- loop :: GameState -> IO ()
--- loop gameState = do
---   putStrLn $ cursor gameState
---   action <- getLine
---   let  (updatedState, message) = applyAction gameState (action gameState) 
---   putStrLn message
---   loop (updatedState { GameState.id = GameState.id updatedState })
 module Main where
 import System.IO
 import GameState
