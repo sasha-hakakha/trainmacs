@@ -1,17 +1,12 @@
 module Main where
 import System.IO
-import GameState
+import  GameState.GameState as GameState
+import InterpretCommand.InterpretCommand (interpretCommand)
 
-identity :: GameState -> GameState
-identity x = x 
-
-interpretAction :: String -> (GameState -> GameState)
-interpretAction x = identity
-
-applyAction :: (GameState -> GameState) -> GameState -> (GameState, String)
-applyAction action gameState =
-  let updatedState = action gameState
-  in (updatedState, "Action applied")
+applyCommand :: (GameState -> GameState) -> GameState -> (GameState, String)
+applyCommand action gameState =
+  let updatedState = InterpretCommand command gameState
+  in (updatedState, "Command applied")
 
 main :: IO ()
 main = do
@@ -24,7 +19,7 @@ loop gameState = do
   hFlush stdout 
   action <- getLine
   let actionFunction = interpretAction action
-      (updatedState, message) = applyAction actionFunction gameState
+      (updatedState, message) = applyCommand actionFunction gameState
   putStr message
   putStrLn ""
   loop updatedState
